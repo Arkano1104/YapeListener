@@ -49,8 +49,8 @@ class YapeNotificationService : NotificationListenerService() {
                 if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                     tts?.setLanguage(Locale.getDefault())
                 }
-                tts?.setSpeechRate(0.9f)
-                tts?.setPitch(1.1f)
+                tts?.setSpeechRate(0.82f)
+                tts?.setPitch(1.25f)
                 ttsReady = true
             }
         }
@@ -116,7 +116,10 @@ class YapeNotificationService : NotificationListenerService() {
                 if (centimos > 0) "$soles soles con $centimos céntimos" else "$soles soles"
             } else it
         }
-        tts?.speak("Yape! De $person, $spokenAmount", TextToSpeech.QUEUE_FLUSH, null, "yape_${System.currentTimeMillis()}")
+        val firstName = person.split(" ", "*").first().trim()
+tts?.setSpeechRate(0.85f)
+tts?.setPitch(1.2f)
+tts?.speak("¡Yape! De $firstName... $spokenAmount", TextToSpeech.QUEUE_FLUSH, null, "yape_${System.currentTimeMillis()}")
     }
 
     private fun showHeadsUpNotification(person: String, amount: String) {
